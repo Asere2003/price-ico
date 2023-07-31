@@ -27,19 +27,6 @@ export class LoadFileComponent {
       this.jsonData = JSON.stringify( data );
 
     }
-    // console.log( e.target.files );
-    // const selectedFile = e.target.files[0];
-    // const fileReader = new FileReader();
-    // fileReader.readAsBinaryString( selectedFile );
-    // fileReader.onload = ( e: any ) => {
-    //   console.log( e );
-    //   let binaryData = e.target?.result;
-    //   let workBook   = XLSX.read(binaryData,{ type: 'binary' });
-    //   workBook.SheetNames.forEach( sheet => {
-    //     const data = XLSX.utils.sheet_to_json( workBook.Sheets[ sheet ]);
-    //     this.jasonData = JSON.stringify( data, undefined, 4 );
-    //   } )
-    // }
   }
 
 }
