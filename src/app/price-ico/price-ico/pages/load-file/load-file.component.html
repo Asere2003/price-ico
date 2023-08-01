@@ -1,28 +1,32 @@
 <div class="flex">
   <div class="center">
-    <h2>File Upload & Image Preview</h2>
-    <p class="lead">No Plugins <b>Just Javascript</b></p>
+    <h2 class="lead" >File Upload </h2>
+    <p *ngIf="jsonData">Name: <b>{{ nameElementFile }}</b></p>
   </div>
 
   <!-- Upload  -->
   <div>
     <form id="file-upload-form" class="uploader">
       <input id="file-upload" type="file"
-        (change)="fileUpload($event)"
+        #takeInput
+        (change)="fileUpload( $event )"
         name="fileUpload"
         accept=".xsl,.xlsx" />
       <label for="file-upload" id="file-drag">
         <img id="file-image" src="#" alt="Preview" class="hidden">
         <div id="start">
           <i class="fa fa-download" aria-hidden="true"></i>
-          <div>Select a file or drag here</div>
+          <div *ngIf="!jsonData", else #ff>Select a file or drag here</div>
+          <ng-template id="ff"></ng-template>
           <div id="notimage" class="hidden">Please select an image</div>
-          <span id="file-upload-btn" class="btn btn-primary">Select a file</span>
+          <span *ngIf="!jsonData" id="file-upload-btn" class="btn btn-primary">Select a file</span>
+          <button *ngIf="jsonData"
+            (click)="saveFile()"
+            class="btn btn-primary">Save</button>
         </div>
-        <div id="response" class="hidden">
-          <div id="messages"></div>
-          <progress class="progress" id="file-progress" value="0">
-            <span>0</span>%
+        <div id="response">
+          <div id="messages">Completado {{ complete }} %</div>
+          <progress class="progress" id="file-progress" [value]="complete">
           </progress>
         </div>
       </label>
